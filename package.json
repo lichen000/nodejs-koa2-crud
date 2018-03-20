@@ -1,0 +1,17 @@
+{
+  "name": "koa2-crud",
+  "version": "1.0.0",
+  "description": "Koa2-crud example project",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "koa-bodyparser": "^4.2.0",
+    "sequelize": "^4.37.3",
+    "mysql2": "^1.5.3"
+  }
+}
