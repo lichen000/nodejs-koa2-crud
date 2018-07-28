@@ -6,7 +6,7 @@ class MyPage {
         this.size = 20;
         this.totalElements = 0;
         this.totalPages = 1;
-        this.content = null;
+        this.content = [];
     }
 }
 

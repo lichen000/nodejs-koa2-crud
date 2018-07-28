@@ -19,6 +19,10 @@ function addMapping(urlMapping) {
                 let path = urlMapping.preFix + url.substring(5);
                 router.post(path, mapping[url]);
                 console.log(`register URL mapping: POST ${path}`);
+            } else if (url.startsWith('ALL ')) {
+                let path = urlMapping.preFix + url.substring(4);
+                router.all(path, mapping[url]);
+                console.log(`register URL mapping: ALL ${path}`);
             } else {
                 console.log(`invalid URL: ${url}`);
             }

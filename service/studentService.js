@@ -1,6 +1,7 @@
 "use strict";
 
 const Student = require('../entity/student');
+const MyPage = require('../common/dto/myPage');
 
 let studentService = {
 
@@ -16,11 +17,27 @@ let studentService = {
 
     /**
      *
-     * @returns {Promise<Array<Model>>}
+     * @param page
+     * @param size
+     * @returns {Promise<MyPage>}
      */
-    getAll: async () => {
-        let students = await Student.findAll();
-        return students;
+    getAll: async (page, size) => {
+        let myPage = new MyPage();
+        myPage.page = page;
+        myPage.size = size;
+        let count = await Student.count();
+        myPage.totalElements = count;
+        if (count > 0) {
+            let offset = page * size;
+            let options = {
+                limit: size,
+                offset: offset
+            };
+            let students = await Student.findAll(options);
+            myPage.totalPages = parseInt((myPage.totalElements - 1) / size) + 1;
+            myPage.content = students;
+        }
+        return myPage;
     },
 
     /**
@@ -35,23 +52,18 @@ let studentService = {
 
     /**
      *
-     * @param id
+     * @param student
      * @param updatedParams
      * @returns {Promise<*>}
      */
-    update: async (id, updatedParams) => {
-        let student = await Student.findById(id);
-        if (student) {
-            for (let key in updatedParams) {
-                if (updatedParams.hasOwnProperty(key)) {
-                    student[key] = updatedParams[key];
-                }
+    update: async (student, updatedParams) => {
+        for (let key in updatedParams) {
+            if (updatedParams.hasOwnProperty(key)) {
+                student[key] = updatedParams[key];
             }
-            let newStudent = await student.save();
-            return newStudent;
-        } else {
-            return null;
         }
+        let newStudent = await student.save();
+        return newStudent;
     },
 
     /**
@@ -60,8 +72,12 @@ let studentService = {
      * @returns {Promise<void>}
      */
     delete: async (id) => {
-        let student = await Student.findById(id);
-        await student.destroy();
+        let options = {
+            where: {
+                id: id
+            }
+        };
+        await Student.destroy(options);
     }
 };
 

@@ -8,11 +8,12 @@ let sequelize = new Sequelize(config.database, config.username, config.password,
     dialect: 'mysql',
     pool: {
         max: 5,
-        min: 0,
+        min: 1,
         acquire: 30000,
         idle: 10000
     },
-    operatorsAliases: false
+    operatorsAliases: false,
+    timezone: '+08:00' //东八时区
 });
 
 let Student = sequelize.define('t_student', {
