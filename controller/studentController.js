@@ -120,14 +120,14 @@ let urlMapping = {
             if (commonUtil.isEmptyObject(updatedParams)) {
                 commonResult.code = ApiStatusCode.PARAM_ERROR;
                 commonResult.message = "参数updatedParams错误：未提供或格式不正确";
-                res.send(commonResult);
+                ctx.response.body = commonResult;
                 return;
             }
             let student = await studentService.get(id);
             if (student === null) {
                 commonResult.code = ApiStatusCode.NOT_FOUND;
                 commonResult.message = "要更新的对象并不存在";
-                res.send(commonResult);
+                ctx.response.body = commonResult;
                 return;
             }
             let newStudent = await studentService.update(id, updatedParams);
