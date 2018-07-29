@@ -4,7 +4,7 @@ const studentService = require('../service/studentService');
 const CommonResult = require('../common/dto/commonResult');
 const commonUtil = require('../common/utils/commonUtil');
 const ApiStatusCode = require('../common/code/apiStatusCode');
-const CommonMessage = require('../common/code/commonMessage');
+// const CommonMessage = require('../common/code/commonMessage');
 
 let urlMapping = {
 
@@ -23,6 +23,7 @@ let urlMapping = {
             let commonResult = new CommonResult();
             let params = ctx.req.method === "GET" ? ctx.query : ctx.request.body;
             let id = params.id;
+
             if (!id || !/(^[1-9]\d*$)/.test(id)) {
                 commonResult.code = ApiStatusCode.PARAM_ERROR;
                 commonResult.message = "id格式错误";
@@ -153,7 +154,7 @@ let urlMapping = {
                 return;
             }
             id = parseInt(id);
-            await studentService.delete(id);
+            await studentService.del(id);
             ctx.response.body = commonResult;
         }
     }

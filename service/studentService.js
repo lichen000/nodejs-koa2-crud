@@ -2,6 +2,7 @@
 
 const Student = require('../entity/student');
 const MyPage = require('../common/dto/myPage');
+// const createError = require('http-errors');
 
 let studentService = {
 
@@ -71,7 +72,7 @@ let studentService = {
      * @param id
      * @returns {Promise<void>}
      */
-    delete: async (id) => {
+    del: async (id) => {
         let options = {
             where: {
                 id: id

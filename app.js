@@ -8,8 +8,20 @@ const routing = require("./routing");
 
 // 创建一个Koa对象表示web app本身:
 const app = new Koa();
+const CommonResult = require('./common/dto/commonResult');
 
 app.use(bodyParser());
+
+app.use(async (ctx, next) => {
+    try {
+        await next();
+    } catch (err) {
+        let commonResult = new CommonResult();
+        commonResult.code = err.statusCode || err.status || 500;
+        commonResult.message = err.message;
+        ctx.response.body = commonResult;
+    }
+});
 
 // 对于任何请求，app将调用该异步函数处理请求：
 app.use(routing());

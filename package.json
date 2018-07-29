@@ -8,10 +8,11 @@
     "start": "node %NODE_DEBUG_OPTION% app.js"
   },
   "dependencies": {
+    "http-errors": "^1.6.3",
     "koa": "^2.5.2",
-    "koa-router": "^7.4.0",
     "koa-bodyparser": "^4.2.1",
-    "sequelize": "^4.38.0",
-    "mysql2": "^1.5.3"
+    "koa-router": "^7.4.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.38.0"
   }
 }
