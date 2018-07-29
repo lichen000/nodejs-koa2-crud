@@ -5,6 +5,7 @@ const CommonResult = require('../common/dto/commonResult');
 const commonUtil = require('../common/utils/commonUtil');
 const ApiStatusCode = require('../common/code/apiStatusCode');
 // const CommonMessage = require('../common/code/commonMessage');
+const LOGGER = require('../config/log');
 
 let urlMapping = {
 
@@ -23,6 +24,9 @@ let urlMapping = {
             let commonResult = new CommonResult();
             let params = ctx.req.method === "GET" ? ctx.query : ctx.request.body;
             let id = params.id;
+
+            LOGGER.info("someone info visited get " + id);
+            LOGGER.error("someone error visited get " + id);
 
             if (!id || !/(^[1-9]\d*$)/.test(id)) {
                 commonResult.code = ApiStatusCode.PARAM_ERROR;
