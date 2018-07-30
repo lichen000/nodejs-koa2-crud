@@ -4,7 +4,8 @@ const studentService = require('../service/studentService');
 const CommonResult = require('../common/dto/commonResult');
 const commonUtil = require('../common/utils/commonUtil');
 const ApiStatusCode = require('../common/code/apiStatusCode');
-const CommonMessage = require('../common/code/commonMessage');
+// const CommonMessage = require('../common/code/commonMessage');
+const LOGGER = require('../config/log');
 
 let urlMapping = {
 
@@ -23,6 +24,10 @@ let urlMapping = {
             let commonResult = new CommonResult();
             let params = ctx.req.method === "GET" ? ctx.query : ctx.request.body;
             let id = params.id;
+
+            LOGGER.info("someone info visited get " + id);
+            LOGGER.error("someone error visited get " + id);
+
             if (!id || !/(^[1-9]\d*$)/.test(id)) {
                 commonResult.code = ApiStatusCode.PARAM_ERROR;
                 commonResult.message = "id格式错误";
@@ -120,14 +125,14 @@ let urlMapping = {
             if (commonUtil.isEmptyObject(updatedParams)) {
                 commonResult.code = ApiStatusCode.PARAM_ERROR;
                 commonResult.message = "参数updatedParams错误：未提供或格式不正确";
-                res.send(commonResult);
+                ctx.response.body = commonResult;
                 return;
             }
             let student = await studentService.get(id);
             if (student === null) {
                 commonResult.code = ApiStatusCode.NOT_FOUND;
                 commonResult.message = "要更新的对象并不存在";
-                res.send(commonResult);
+                ctx.response.body = commonResult;
                 return;
             }
             let newStudent = await studentService.update(id, updatedParams);
@@ -153,7 +158,7 @@ let urlMapping = {
                 return;
             }
             id = parseInt(id);
-            await studentService.delete(id);
+            await studentService.del(id);
             ctx.response.body = commonResult;
         }
     }

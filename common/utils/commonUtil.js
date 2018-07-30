@@ -9,7 +9,8 @@ let commonUtil = {
         if (obj === null || obj === undefined || obj === "" || obj === {} || obj === []) {
             return true;
         }
-        for (let name in obj) {
+        let name;
+        for ( name in obj) {
             return false;
         }
         return true;
