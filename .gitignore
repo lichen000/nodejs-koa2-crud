@@ -1,5 +1,6 @@
 .idea
-logs/*
-!logs/.gitkeep
+.vscode
+logs/
+!.gitkeep
 *.iml
 node_modules/
