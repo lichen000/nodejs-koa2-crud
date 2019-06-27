@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"target": "es6",
+		"module": "commonjs",
+		"watch": false,
+		"sourceMap": false,
+		"outDir": "./target",
+		"lib": [
+			"es2015"
+		],
+		"removeComments": true
+	},
+	"include": [
+		"./src/**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"target"
+	]
+}

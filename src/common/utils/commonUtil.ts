@@ -1,20 +1,20 @@
-let commonUtil = {
+/**
+ * 工具
+ */
+export const CommonUtil = {
 
     /**
-     *
-     * @param obj
+     * 判断是否为空对象
+     * @param obj 对象
      * @returns {boolean}
      */
-    isEmptyObject: function(obj) {
+    isEmptyObject(obj: any): boolean {
         if (obj === null || obj === undefined || obj === "" || obj === {} || obj === []) {
             return true;
         }
-        let name;
-        for ( name in obj) {
+        for (let key in obj) {
             return false;
         }
         return true;
     }
 };
-
-module.exports = commonUtil;

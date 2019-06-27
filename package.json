@@ -5,15 +5,14 @@
   "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "node %NODE_DEBUG_OPTION% app.js"
+    "start": "node %NODE_DEBUG_OPTION% ./target/app.js"
   },
   "dependencies": {
-    "http-errors": "^1.6.3",
-    "koa": "^2.5.2",
+    "http-errors": "^1.7.2",
+    "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "mysql2": "^1.5.3",
-    "sequelize": "^4.38.0",
-    "tracer": "^0.9.1"
+    "mysql2": "^1.6.5",
+    "tracer": "^0.9.8"
   }
 }
