@@ -5,14 +5,22 @@
   "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "node %NODE_DEBUG_OPTION% ./target/app.js"
+    "start": "npm run dev",
+    "dev": "node ./target/app.js --NODE_ENV dev",
+    "uat1": "node ./target/app.js --NODE_ENV uat1",
+    "stg": "node ./target/app.js --NODE_ENV stg",
+    "prd": "node ./target/app.js --NODE_ENV=prd"
   },
   "dependencies": {
-    "http-errors": "^1.7.2",
-    "koa": "^2.7.0",
+    "http-errors": "^1.7.3",
+    "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "mysql2": "^1.6.5",
-    "tracer": "^0.9.8"
+    "mysql2": "^1.7.0",
+    "node-schedule": "^1.3.2",
+    "tracer": "^0.9.9"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.11"
   }
 }
