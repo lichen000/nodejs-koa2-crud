@@ -85,7 +85,7 @@ const urlMapping = {
             let employee_no = params.employee_no;
             let employee_name = params.employee_name;
             let age = params.age ? params.age : 0;
-            LOGGER.info("/api/employee/getall visited, employee_no: %s, employee_name: %s, age: %s", employee_no, employee_name, age);
+            LOGGER.info("/api/employee/getall, employee_no: %s, employee_name: %s, age: %s", employee_no, employee_name, age);
             if (!employee_no && !employee_name) {
                 commonResult.code = ApiStatusCode.PARAM_ERROR;
                 commonResult.message = "employee_no或employee_name格式错误";
